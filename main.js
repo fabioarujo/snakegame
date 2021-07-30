@@ -40,12 +40,20 @@ function update(event){
 }
 
 function iniciarJogo(){
+   
     // logica para a cobrinha atravessar a parede e retornar no lado oposto
     if(snake[0].x > 15 * box && direcao == "right") snake[0].x = 0;
     if(snake[0].x < 0  && direcao == "left") snake[0].x = 16 * box;
     if(snake[0].y > 15 * box && direcao == "down") snake[0].y = 0;
     if(snake[0].y < 0  && direcao == "up") snake[0].y = 16 * box;
    
+   for(i = 1; i < snake.length; i++){
+       if(snake[0].x == snake[1].x && snake[0].y == snake[1].y){
+           clearInterval(jogo);
+           alert("GAME OVER!!!");
+       }
+   } 
+
     criarBG();
     CreateSnake();
     drawFood();
